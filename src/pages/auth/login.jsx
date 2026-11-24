@@ -149,7 +149,7 @@ export const SumoLandingLogin = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#020617] p-4 font-sans">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#020617] p-3 sm:p-4 font-sans">
       
       {/* --- FONDO ANIMADO MODERNO*/}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -159,10 +159,10 @@ export const SumoLandingLogin = () => {
       </div>
       
       {/* Contenedor Principal */}
-      <div className="relative z-10 flex w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] bg-white shadow-2xl md:flex-row md:min-h-[650px] transform transition-all duration-500">
+      <div className="relative z-10 flex w-full max-w-md md:max-w-6xl flex-col overflow-hidden rounded-3xl md:rounded-[2rem] bg-white shadow-2xl md:flex-row md:min-h-[650px] transform transition-all duration-500">
         
-        {/* --- PANEL IZQUIERDO (Información y Branding) --- */}
-        <div className="relative flex w-full flex-col justify-center overflow-hidden bg-gradient-to-br from-[#0B1120] via-[#0F172A] to-[#0B1120] p-10 text-white md:w-[45%] lg:p-14 transition-all">
+        {/* --- PANEL IZQUIERDO (Información y Branding - solo en md+) --- */}
+        <div className="relative hidden md:flex w-full flex-col justify-center overflow-hidden bg-gradient-to-br from-[#0B1120] via-[#0F172A] to-[#0B1120] p-10 text-white md:w-[45%] lg:p-14 transition-all">
           
           <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 opacity-20 blur-2xl pointer-events-none"></div>
           <div className="absolute -right-16 bottom-10 h-64 w-64 rounded-full bg-gradient-to-tr from-[#1e293b] to-[#0B1120] border border-white/5 shadow-2xl pointer-events-none"></div>
@@ -209,24 +209,32 @@ export const SumoLandingLogin = () => {
         </div>
 
         {/* --- PANEL DERECHO (Formularios Dinámicos) --- */}
-        <div className="flex w-full flex-col justify-center bg-white p-8 md:w-[55%] lg:px-16 lg:py-12 transition-all duration-300 relative">
+        <div className="flex w-full flex-col justify-center bg-white px-5 py-6 sm:p-8 md:w-[55%] lg:px-16 lg:py-12 transition-all duration-300 relative">
           
-          {/* Botón superior derecho para cambiar de modo */}
-          <div className="absolute top-6 right-6 lg:top-8 lg:right-10">
-            <button 
-              onClick={toggleMode}
-              className="flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-amber-600 transition-colors bg-slate-50 hover:bg-amber-50 px-4 py-2 rounded-full border border-slate-200 hover:border-amber-200 cursor-pointer"
-            >
-              {isRegistering ? 'Volver al Login' : 'Crear una cuenta'} <ArrowRight size={14} />
-            </button>
+          {/* Encabezado compacto en móvil + Botón para cambiar de modo */}
+          <div className="flex items-center justify-between mb-5 md:mb-0 md:block">
+            <div className="flex items-center gap-2.5 md:hidden">
+              <img src="/logo_sumo.png" alt="sumo" className="h-8 w-8 rounded-lg object-contain" />
+              <span className="text-base font-black tracking-tight text-slate-900">SUMO</span>
+            </div>
+
+            <div className="md:absolute md:top-6 md:right-6 lg:top-8 lg:right-10">
+              <button 
+                type="button"
+                onClick={toggleMode}
+                className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-amber-600 transition-colors bg-slate-50 hover:bg-amber-50 px-3.5 py-2 rounded-full border border-slate-200 hover:border-amber-200 cursor-pointer"
+              >
+                {isRegistering ? 'Volver al Login' : 'Crear una cuenta'} <ArrowRight size={14} />
+              </button>
+            </div>
           </div>
 
-          <div className="mx-auto w-full max-w-sm mt-8 sm:mt-4">
+          <div className="mx-auto w-full max-w-sm md:mt-8 lg:mt-4">
             
-            <h3 className="mb-2 text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h3 className="mb-1.5 text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
               {isRegistering ? 'Nuevo Postulante' : 'Iniciar Sesión'}
             </h3>
-            <p className="mb-6 text-sm text-slate-500">
+            <p className="mb-5 text-sm text-slate-500">
               {isRegistering 
                 ? 'Ingresa tus datos para generar tus credenciales.' 
                 : 'Ingresa tus credenciales para acceder al sistema.'}
@@ -295,7 +303,7 @@ export const SumoLandingLogin = () => {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-[10px] font-bold uppercase text-slate-500 mb-1">Nombres *</label>
                     <input
@@ -322,7 +330,7 @@ export const SumoLandingLogin = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-[10px] font-bold uppercase text-slate-500 mb-1">C.I. *</label>
                     <div className="relative flex items-center">
@@ -359,7 +367,7 @@ export const SumoLandingLogin = () => {
                   <p className="text-[10px] font-bold uppercase text-amber-800 mb-2 flex items-center gap-1">
                     <ShieldCheck size={14} className="text-amber-600" /> Credenciales Generadas
                   </p>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <input
                       type="text"
                       readOnly
